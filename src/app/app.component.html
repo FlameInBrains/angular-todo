@@ -20,7 +20,12 @@
     </header>
 
     <section class="todoapp__main" data-cy="TodoList">
-      <div data-cy="Todo" class="todo completed">
+      <div
+        data-cy="Todo"
+        class="todo"
+        [class.completed]="todo.completed"
+        *ngFor="let todo of todos"
+      >
         <label class="todo__status-label">
           <input
             data-cy="TodoStatus"
@@ -30,52 +35,7 @@
           />
         </label>
 
-        <span data-cy="TodoTitle" class="todo__title">
-          Completed Todo
-        </span>
-
-        <button type="button" class="todo__remove" data-cy="TodoDelete">
-          ×
-        </button>
-
-        <div data-cy="TodoLoader" class="modal overlay">
-          <div class="modal-background has-background-white-ter"></div>
-          <div class="loader"></div>
-        </div>
-      </div>
-
-      <div data-cy="Todo" class="todo">
-        <label class="todo__status-label">
-          <input
-            data-cy="TodoStatus"
-            type="checkbox"
-            class="todo__status"
-          />
-        </label>
-
-        <span data-cy="TodoTitle" class="todo__title">
-          Not Completed Todo
-        </span>
-        <button type="button" class="todo__remove" data-cy="TodoDelete">
-          ×
-        </button>
-
-        <div data-cy="TodoLoader" class="modal overlay">
-          <div class="modal-background has-background-white-ter"></div>
-          <div class="loader"></div>
-        </div>
-      </div>
-
-      <div data-cy="Todo" class="todo">
-        <label class="todo__status-label">
-          <input
-            data-cy="TodoStatus"
-            type="checkbox"
-            class="todo__status"
-          />
-        </label>
-
-        <form>
+        <form *ngIf="editing else titleBlock">
           <input
             data-cy="TodoTitleField"
             type="text"
@@ -85,30 +45,17 @@
           />
         </form>
 
+        <ng-template #titleBlock>
+          <span data-cy="TodoTitle" class="todo__title">
+            {{todo.title}}
+          </span>
+
+          <button type="button" class="todo__remove" data-cy="TodoDelete">
+            ×
+          </button>
+        </ng-template>
+
         <div data-cy="TodoLoader" class="modal overlay">
-          <div class="modal-background has-background-white-ter"></div>
-          <div class="loader"></div>
-        </div>
-      </div>
-
-      <div data-cy="Todo" class="todo">
-        <label class="todo__status-label">
-          <input
-            data-cy="TodoStatus"
-            type="checkbox"
-            class="todo__status"
-          />
-        </label>
-
-        <span data-cy="TodoTitle" class="todo__title">
-          Todo is being saved now
-        </span>
-
-        <button type="button" class="todo__remove" data-cy="TodoDelete">
-          ×
-        </button>
-
-        <div data-cy="TodoLoader" class="modal overlay is-active">
           <div class="modal-background has-background-white-ter"></div>
           <div class="loader"></div>
         </div>
