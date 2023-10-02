@@ -6,6 +6,12 @@ const todos = [
   { id: 3, title: 'React', completed: true },
   { id: 4, title: 'Angular', completed: false },
 ]
+
+interface Todo {
+  id: number;
+  title: string;
+  completed: boolean;
+}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

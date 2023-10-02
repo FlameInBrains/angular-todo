@@ -24,14 +24,14 @@
         data-cy="Todo"
         class="todo"
         [class.completed]="todo.completed"
-        *ngFor="let todo of todos"
+        *ngFor="let todo of todos; let i = index"
       >
         <label class="todo__status-label">
           <input
             data-cy="TodoStatus"
             type="checkbox"
             class="todo__status"
-            checked
+            [(ngModel)]="todo.completed"
           />
         </label>
 
@@ -50,7 +50,12 @@
             {{todo.title}}
           </span>
 
-          <button type="button" class="todo__remove" data-cy="TodoDelete">
+          <button
+            type="button"
+            class="todo__remove"
+            data-cy="TodoDelete"
+            (click)="todos.splice(i, 1)"
+          >
             ×
           </button>
         </ng-template>
