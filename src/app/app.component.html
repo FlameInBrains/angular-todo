@@ -7,14 +7,16 @@
         type="button"
         class="todoapp__toggle-all active"
         data-cy="ToggleAllButton"
-      ></button>
+      > </button>
 
-      <form>
+      <form (ngSubmit)="addTodo()">
         <input
           data-cy="NewTodoField"
           type="text"
           class="todoapp__new-todo"
           placeholder="What needs to be done?"
+          name="title"
+          [(ngModel)]="title"
         />
       </form>
     </header>
@@ -69,7 +71,7 @@
 
     <footer class="todoapp__footer" data-cy="Footer">
       <span class="todo-count" data-cy="TodosCounter">
-        3 items left
+        {{ activeTodos.length }} items left
       </span>
 
       <nav class="filter" data-cy="Filter">
@@ -112,7 +114,7 @@
     data-cy="ErrorNotification"
     class="notification is-danger is-light has-text-weight-normal"
   >
-    <button data-cy="HideErrorButton" type="button" class="delete"></button>
+    <button data-cy="HideErrorButton" type="button" class="delete"> </button>
     Unable to load todos
     <br />
     Title should not be empty
